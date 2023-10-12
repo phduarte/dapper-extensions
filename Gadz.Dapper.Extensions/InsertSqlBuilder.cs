@@ -2,7 +2,7 @@
 
 namespace Gadz.Dapper.Extensions
 {
-    public class InsertSqlBuilder : SqlBuilder
+    internal class InsertSqlBuilder : SqlBuilder
     {
         protected override string Generate(Type type)
         {

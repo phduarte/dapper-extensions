@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Gadz.Dapper.Extensions
 {
-    public abstract class SqlBuilder
+    internal abstract class SqlBuilder : ISqlBuilder
     {
         private static IDictionary<Type, string> _cache = new Dictionary<Type, string>();
 

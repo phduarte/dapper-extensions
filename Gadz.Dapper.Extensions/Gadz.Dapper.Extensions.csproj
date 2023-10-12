@@ -3,14 +3,16 @@
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0</TargetFrameworks>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<Title>One more basic extension to build Sql statements for Dapper</Title>
 		<Description>You can use it to avoid write sql statements</Description>
 		<Authors>phduarte</Authors>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/phduarte/dapper-extensions</RepositoryUrl>
 		<PackageIcon>dapper-extensions.png</PackageIcon>
+		<PackageTags>database, dataaccess, datalayer, library, dapper, sql</PackageTags>
 	</PropertyGroup>
-
+	
 	<ItemGroup>
 		<None Include="..\dapper-extensions.png">
 			<Pack>True</Pack>
@@ -19,7 +21,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Dapper" Version="2.1.4" />
+		<PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <PackageReference Include="Dapper" Version="2.0.30" />
 	</ItemGroup>
 
 </Project>
