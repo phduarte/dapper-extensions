@@ -4,7 +4,7 @@
 		<TargetFrameworks>netstandard2.0</TargetFrameworks>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Title>One more basic extension to build Sql statements for Dapper</Title>
-		<Description>You can use it to avoid write sql build</Description>
+		<Description>You can use it to avoid write sql statements</Description>
 		<Authors>phduarte</Authors>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/phduarte/dapper-extensions</RepositoryUrl>
