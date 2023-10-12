@@ -51,4 +51,12 @@ public class Dtos
         [Column("insert_sequence")]
         public int Sequence { get; set; }
     }
+
+    public class TableWithIgnoreAttribute
+    {
+        [Column("insert_dt")]
+        public DateTime Date { get; set; }
+        [Column(ignore: true)]
+        public int Sequence { get; set; }
+    }
 }

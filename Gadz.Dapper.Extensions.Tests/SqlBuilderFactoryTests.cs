@@ -19,21 +19,23 @@ namespace Gadz.Dapper.Extensions.Tests
         {
             var defaultDto = fixture.Create<TableLayout>();
             var sql = SqlBuilderFactory.For(CommandType.Insert).Build(defaultDto.GetType());
+            var expected = "INSERT INTO [TableLayout]([EntityId],[TextField],[IntField],[DecimalField],[DateTimeField]) VALUES(@[EntityId],@[TextField],@[IntField],@[DecimalField],@[DateTimeField]);";
 
-            Assert.That(sql, Is.EqualTo("INSERT INTO [PAYMENT]([PAYMENT_UUID],[DIGITIZABLE_LINE],[PAYMENT_DT],[CREATED_AT_DT],[CREATED_BY_DS]) VALUES(@PAYMENT_UUID,@DIGITIZABLE_LINE,@PAYMENT_DT,@CREATED_AT_DT,@CREATED_BY_DS);"));
+            Assert.That(sql, Is.EqualTo(expected));
         }
 
         [Test]
-        public void InsertSqlBuilder_WhenUsedTableWithoutSchema_ShouldRecognizeAttributeName()
+        public void InsertSqlBuilder_WhenUsingTableWithoutSchema_ShouldRecognizeAttributeName()
         {
             var dto = fixture.Create<TableWithOriginalNameAndWithoutSchema>();
             var sql = SqlBuilderFactory.For(CommandType.Insert).Build(dto.GetType());
+            var expected = "INSERT INTO [TableWithOriginalNameAndWithoutSchema]([insert_dt],[insert_sequence]) VALUES((GETDATE()),(SELECT ISNULL(MAX(insert_sequence)+1,1) from #temp));";
 
-            Assert.That(sql, Is.EqualTo("INSERT [TableWithOriginalNameAndWithoutSchema]([insert_dt],[insert_sequence]) VALUES((GETDATE()),(SELECT ISNULL(MAX(insert_sequence)+1,1) from #temp));"));
+            Assert.That(sql, Is.EqualTo(expected));
         }
 
         [Test]
-        public void InsertSqlBuilder_WhenUsedTableWithSchema_ShouldRecognizeAttributeName()
+        public void InsertSqlBuilder_WhenUsingTableWithSchema_ShouldRecognizeAttributeName()
         {
             var dto = new TableWithDifferentNameAndSchemaName
             {
@@ -41,8 +43,23 @@ namespace Gadz.Dapper.Extensions.Tests
                 Sequence = 1
             };
             var sql = SqlBuilderFactory.For(CommandType.Insert).Build(dto.GetType());
+            var expected = "INSERT INTO [dbo].[#temp]([insert_dt],[insert_sequence]) VALUES(@[insert_dt],@[insert_sequence]);";
 
-            Assert.That(sql, Is.EqualTo("INSERT [dbo].[#temp]([insert_dt],[insert_sequence]) VALUES(@insert_dt,@insert_sequence);"));
+            Assert.That(sql, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void InsertSqlBuilder_WhenIgnoredProperties_ShouldIgnoreInSqlStatement()
+        {
+            var dto = new TableWithIgnoreAttribute
+            {
+                Date = DateTime.Parse("2023-10-01 10:00"),
+                Sequence = 1
+            };
+            var sql = SqlBuilderFactory.For(CommandType.Insert).Build(dto.GetType());
+            var expected = "INSERT INTO [TableWithIgnoreAttribute]([insert_dt]) VALUES(@[insert_dt]);";
+
+            Assert.That(sql, Is.EqualTo(expected));
         }
     }
 }

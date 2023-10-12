@@ -33,6 +33,9 @@ namespace Gadz.Dapper.Extensions
             foreach (var p in type.GetProperties())
             {
                 var attr = p.GetCustomAttribute<ColumnAttribute>();
+
+                if (attr?.Ignore ?? false) continue;
+
                 var name = $"[{attr?.Name ?? p.Name}]";
                 var exp = attr?.Expression;
                 var value = !string.IsNullOrEmpty(exp) ? $"({exp})" : $"@{name}";
@@ -50,7 +53,7 @@ namespace Gadz.Dapper.Extensions
             var tableName = $"[{tableAttr?.Name ?? type.Name}]";
             var dbSchema = tableAttr?.Schema ?? string.Empty;
 
-            return string.IsNullOrEmpty(dbSchema) ? tableName : $"{dbSchema}.{tableName}";
+            return string.IsNullOrEmpty(dbSchema) ? tableName : $"[{dbSchema}].{tableName}";
         }
     }
 }
