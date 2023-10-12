@@ -22,6 +22,6 @@ jobs:
     - name: Pack
       run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
     - name: Push
-      run: dotnet nuget push NuGet.Workflow.${VERSION}.nupkg --source https://nuget.pkg.github.com/phduarte/index.json --api-key ${NUGET_PACKAGE}
+      run: dotnet nuget push Gadz.Dapper.Extensions.${VERSION}.nupkg --source https://nuget.pkg.github.com/phduarte/index.json --api-key ${NUGET_PACKAGE}
       env:
         NUGET_PACKAGE: ${{ secrets.NUGET_PACKAGE }}
