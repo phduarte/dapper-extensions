@@ -19,7 +19,7 @@ namespace Gadz.Dapper.Extensions.Tests
         {
             var defaultDto = fixture.Create<TableLayout>();
             var sql = SqlBuilderFactory.For(CommandType.Insert).Build(defaultDto.GetType());
-            var expected = "INSERT INTO [TableLayout]([EntityId],[TextField],[IntField],[DecimalField],[DateTimeField]) VALUES(@[EntityId],@[TextField],@[IntField],@[DecimalField],@[DateTimeField]);";
+            var expected = "INSERT INTO [TableLayout]([EntityId],[TextField],[IntField],[DecimalField],[DateTimeField]) VALUES(@EntityId,@TextField,@IntField,@DecimalField,@DateTimeField);";
 
             Assert.That(sql, Is.EqualTo(expected));
         }
@@ -43,7 +43,7 @@ namespace Gadz.Dapper.Extensions.Tests
                 Sequence = 1
             };
             var sql = SqlBuilderFactory.For(CommandType.Insert).Build(dto.GetType());
-            var expected = "INSERT INTO [dbo].[#temp]([insert_dt],[insert_sequence]) VALUES(@[insert_dt],@[insert_sequence]);";
+            var expected = "INSERT INTO [dbo].[#temp]([insert_dt],[insert_sequence]) VALUES(@insert_dt,@insert_sequence);";
 
             Assert.That(sql, Is.EqualTo(expected));
         }
@@ -57,7 +57,7 @@ namespace Gadz.Dapper.Extensions.Tests
                 Sequence = 1
             };
             var sql = SqlBuilderFactory.For(CommandType.Insert).Build(dto.GetType());
-            var expected = "INSERT INTO [TableWithIgnoreAttribute]([insert_dt]) VALUES(@[insert_dt]);";
+            var expected = "INSERT INTO [TableWithIgnoreAttribute]([insert_dt]) VALUES(@insert_dt);";
 
             Assert.That(sql, Is.EqualTo(expected));
         }

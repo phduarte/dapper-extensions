@@ -36,11 +36,11 @@ namespace Gadz.Dapper.Extensions
 
                 if (attr?.Ignore ?? false) continue;
 
-                var name = $"[{attr?.Name ?? p.Name}]";
+                var name = attr?.Name ?? p.Name;
                 var exp = attr?.Expression;
                 var value = !string.IsNullOrEmpty(exp) ? $"({exp})" : $"@{name}";
 
-                columns.Add(name);
+                columns.Add($"[{name}]");
                 values.Add(value);
             }
 
