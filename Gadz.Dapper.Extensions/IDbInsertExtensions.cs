@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Gadz.Dapper.Extensions
@@ -23,6 +24,8 @@ namespace Gadz.Dapper.Extensions
         public static Task<int> InsertAsync<T>(this IDbConnection connection, T dto)
         {
             var sql = SqlBuilderFactory.For(CommandType.Insert).Build(typeof(T));
+
+            Debug.WriteLine(sql);
 
             return connection.ExecuteAsync(sql, dto);
         }

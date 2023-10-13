@@ -11,6 +11,7 @@
 		<RepositoryUrl>https://github.com/phduarte/dapper-extensions</RepositoryUrl>
 		<PackageIcon>dapper-extensions.png</PackageIcon>
 		<PackageTags>database, dataaccess, datalayer, library, dapper, sql</PackageTags>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 	</PropertyGroup>
 	
 	<ItemGroup>
