@@ -38,7 +38,7 @@ namespace Gadz.Dapper.Extensions
 
                 var name = attr?.Name ?? p.Name;
                 var exp = attr?.Expression;
-                var value = !string.IsNullOrEmpty(exp) ? $"({exp})" : $"@{name}";
+                var value = !string.IsNullOrEmpty(exp) ? $"({exp})" : $"@{p.Name}";
 
                 columns.Add($"[{name}]");
                 values.Add(value);
