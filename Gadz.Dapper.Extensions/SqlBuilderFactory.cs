@@ -9,7 +9,7 @@ namespace Gadz.Dapper.Extensions
     {
         private static Dictionary<CommandType, SqlBuilder> _dic = new Dictionary<CommandType, SqlBuilder>()
         {
-            { CommandType.Insert,new InsertSqlBuilder() }
+            { CommandType.Insert, new InsertSqlBuilder() }
         };
 
         /// <summary>

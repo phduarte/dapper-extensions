@@ -12,7 +12,7 @@
 		<PackageIcon>dapper-extensions.png</PackageIcon>
 		<PackageTags>database, dataaccess, datalayer, library, dapper, sql</PackageTags>
 		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
-		<Version>1.0.3</Version>
+		<Version>1.0.4</Version>
 	</PropertyGroup>
 	
 	<ItemGroup>

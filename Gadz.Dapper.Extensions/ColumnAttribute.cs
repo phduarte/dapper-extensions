@@ -14,11 +14,12 @@ namespace Gadz.Dapper.Extensions
         /// <param name="name">The column name in database.</param>
         /// <param name="expression">Explicit expression to be considered instead of the value.</param>
         /// <param name="ignore">Allow you ignore a column from the mapping.</param>
-        public ColumnAttribute(string name = null, string expression = null, bool ignore = false)
+        public ColumnAttribute(string name = null, string expression = null, bool ignore = false, int order = 0)
         {
             Name = name;
             Expression = expression;
             Ignore = ignore;
+            Order = order;
         }
 
         /// <summary>
@@ -34,5 +35,7 @@ namespace Gadz.Dapper.Extensions
         /// Allow you ignore a column from the mapping.
         /// </summary>
         public bool Ignore { get; }
+
+        public int Order { get; }
     }
 }

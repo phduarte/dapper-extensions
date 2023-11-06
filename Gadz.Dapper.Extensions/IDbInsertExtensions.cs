@@ -25,7 +25,11 @@ namespace Gadz.Dapper.Extensions
         {
             var sql = SqlBuilderFactory.For(CommandType.Insert).Build(typeof(T));
 
+            Debug.WriteLine("-------------- GENERATED INSERT STATEMENT BY GADZ.DAPPER.EXTENSIONS -------------");
+            Debug.WriteLine("");
             Debug.WriteLine(sql);
+            Debug.WriteLine("");
+            Debug.WriteLine("---------------------------------------------------------------------------------");
 
             return connection.ExecuteAsync(sql, dto);
         }

@@ -7,7 +7,7 @@ namespace Gadz.Dapper.Extensions
 {
     internal abstract class SqlBuilder : ISqlBuilder
     {
-        private static IDictionary<Type, string> _cache = new Dictionary<Type, string>();
+        private static Dictionary<Type, string> _cache = new Dictionary<Type, string>();
 
         public virtual string Build(Type type)
         {
